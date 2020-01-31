@@ -42,9 +42,9 @@ export const validate = (value, validators) => {
     if (validator.type === VALIDATOR_TYPE_EMAIL) {
       isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
     }
-     if (validator.type === VALIDATOR_NOT_REQUIRED) {
-      isValid = isValid;
-    }
+    //  if (validator.type === VALIDATOR_NOT_REQUIRED) {
+    //   isValid = isValid;
+    // }
   }
   return isValid;
 };

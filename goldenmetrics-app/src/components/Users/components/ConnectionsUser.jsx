@@ -43,7 +43,7 @@ const ConnectionsUser = props => {
       return 0;
     });
     setSortedConnections(sortedUserConnections);
-  }, [props.id]);
+  }, [props.id, user.loadedUsers]);
 
   if (!user.loadedUsers) {
     return (

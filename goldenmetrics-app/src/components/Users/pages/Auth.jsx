@@ -51,7 +51,7 @@ const Auth = () => {
   return (
     <div className="container">
       <div className="container-auth">
-        <img className="container-auth__image" />
+        <img className="container-auth__image" alt = ""/>
         <form className="container-auth__form" onSubmit={authSubmitHandler}>
           <h3>Contacts App</h3>
           <Input
