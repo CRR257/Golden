@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AuthContext } from "./shared/Context/AuthContext";
-import Users from "./components/Users/pages/Users";
-import Auth from "./components/Users/pages/Auth";
+import Users from "./Users/pages/Users";
+import Auth from "./Users/pages/Auth";
 import { useAuth } from "./shared/Hooks/auth-hooks";
 
 const App = () => {
