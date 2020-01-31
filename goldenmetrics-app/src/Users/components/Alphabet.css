@@ -1,0 +1,14 @@
+.alphabet {
+  display: flex;
+  flex-direction: inherit;
+  writing-mode: vertical-rl;
+  border-right: 1px solid grey;
+  padding: 0 3px;
+}
+
+.alphabet-letter {
+  margin: 4px 0;
+  border-radius: 2px;
+  border: 1px solid grey;
+  padding: 1px 6px;
+}
