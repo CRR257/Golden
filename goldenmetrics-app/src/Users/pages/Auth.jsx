@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import Input from "../../shared/components/FormElements/Input";
+import Input from "../../shared/FormElements/Input";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_NOT_REQUIRED
