@@ -1,0 +1,18 @@
+.container-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.users-content {
+  display: flex;
+  border-top: 1px solid black;
+}
+ul {
+  margin: unset;
+  padding-left: 12px;
+  padding-top: 6px;
+}
+
+.button-users {
+  padding: 8px 0px 6px 43px;
+}
