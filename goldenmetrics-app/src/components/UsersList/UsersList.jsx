@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import Alphabet from "./Alphabet";
-import SearchBar from "./SearchBar";
-import AllUsers from "./AllUsers";
-import Logout from "./Logout";
-import ConnectionsUser from "./ConnectionsUser";
-import UsersLetterSelected from "./UsersLetterSelected";
-import UsersSearchInput from "./UsersSearchInput";
+import Alphabet from "../Alphabet/Alphabet";
+import SearchBar from "../SearchBar/SearchBar";
+import AllUsers from "../AllUsers/AllUsers";
+import Logout from "../Logout/Logout";
+import ConnectionsUser from "../ConnectionsUser/ConnectionsUser";
+import UsersLetterSelected from "../UsersLetterSelected/UsersLetterSelected";
+import UsersSearchInput from "../UsersSearchInput/UsersSearchInput";
 import "./UsersList.css";
 
 const UsersList = props => {

@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../../shared/Context/UserContext";
 
-import SearchBar from "./SearchBar";
-import AllConnectionsUser from "./AllConnectionsUser";
-import ConnectionsSearchInput from "./ConnectionsSearchInput";
+import SearchBar from "../SearchBar/SearchBar";
+import AllConnectionsUser from "../AllConnectionsUser/AllConnectionsUser";
+import ConnectionsSearchInput from "../ConnectionsSearchInput/ConnectionsSearchInput";
 import "./ConnectionsUser.css";
 
 const ConnectionsUser = props => {

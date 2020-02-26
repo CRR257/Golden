@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { UserProvider } from "../../shared/Context/UserContext";
-import UsersList from "../components/UsersList";
+import UsersList from "../UsersList/UsersList";
 
 const Users = () => {
   const [loadedUsers, setLoadedUsers] = useState([]);

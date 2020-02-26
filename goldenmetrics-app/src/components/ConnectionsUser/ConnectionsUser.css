@@ -1,0 +1,74 @@
+.connections {
+  width: 57%;
+  position: absolute;
+  left: 28rem;
+  top: 2rem;
+  padding-top: 3rem;
+}
+
+.connections-header {
+  position: relative;
+  bottom: 27px;
+}
+
+.connections-header__title {
+  font-size: 24px;
+  position: relative;
+  top: 6px;
+  left: 6rem;
+}
+
+.connections-header__image {
+  border-radius: 50%;
+  height: 43px;
+  position: absolute;
+  right: 48rem;
+}
+
+.connections-user {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  padding-top: 28px;
+  padding-left: 17px;
+}
+
+.connection-user {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  border: 1px solid black;
+  margin: 5px 5px;
+  height: 10rem;
+  min-width: 130px;
+  width: 130px;
+}
+
+.connection-user__image {
+  border-radius: 50%;
+}
+
+.connection-user__name {
+  top: 10px;
+  position: relative;
+  font-size: 13px;
+  text-align: center;
+}
+
+.searchbar-connections {
+  bottom: -23px;
+  position: absolute;
+  left: 34.6rem;
+}
+
+.button-contacts {
+  position: relative;
+  top: 13px;
+  justify-content: center;
+  display: flex;
+}
+
+.pagination {
+  margin: 0px 19px;
+}
