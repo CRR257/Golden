@@ -5,14 +5,18 @@
 Goldenmetrics is an app to show users and their connections.
 
 In order to access, first you have to login:<br>
-- email: goldenmetrics@goldenmetrics.com
-- password: "golden"
 
-You can search a user by:
-- The first letter of its name (by clicking on the vertical menu letters on the left hand side)
-- Searching the user in a search bar on top of the list of users
+Login:<br>
 
-When clicking a user's name, you can see the users he/she is connected to. Then, you can search along his/her connections by name (using the search bar on the top right side, above the connections panel)
+    email: goldenmetrics@goldenmetrics.com
+    password: golden
+</br>
+You can search a user by:</br>
+
+- The first letter of its name (by clicking on the vertical menu letters on the left hand side)</br>
+- The search bar on top of the list of users
+
+When clicking a user's name, you can see the users he/she is connected to. Then, you can search along his/her connections by name (using the search bar on the top right side, above the connections panel).
 
 ## Instrucions to run the project
 
