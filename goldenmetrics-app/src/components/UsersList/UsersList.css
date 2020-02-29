@@ -1,3 +1,8 @@
+.container {
+  margin: 2rem 11rem;
+  border: 1px solid black;
+}
+
 .container-header {
   display: flex;
   justify-content: space-between;
@@ -11,8 +16,20 @@ ul {
   margin: unset;
   padding-left: 12px;
   padding-top: 6px;
+  border-right: 1px solid black;
+  padding-right: 10px;
+  min-width: 200px;
 }
 
 .button-users {
   padding: 8px 0px 6px 43px;
+}
+
+.warning{
+  position: relative;
+  margin: 0 auto;
+  top: 10rem;
+  width: 290px;
+  text-align: center;
+  line-height: 20px;
 }

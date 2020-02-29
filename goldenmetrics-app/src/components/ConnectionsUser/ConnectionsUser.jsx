@@ -4,6 +4,8 @@ import UserContext from "../../shared/Context/UserContext";
 import SearchBar from "../SearchBar/SearchBar";
 import AllConnectionsUser from "../AllConnectionsUser/AllConnectionsUser";
 import ConnectionsSearchInput from "../ConnectionsSearchInput/ConnectionsSearchInput";
+import Pagination from "../Pagination/PaginationContacts";
+import connectionsUserLogic from "./ConnectionsUserLogic";
 import "./ConnectionsUser.css";
 
 const ConnectionsUser = props => {
@@ -15,34 +17,15 @@ const ConnectionsUser = props => {
   const [avatarUser, setAvatarUser] = useState("");
   const [searchInput, setSearchInput] = useState();
   const [usersSearchInput, setUsersSearchInput] = useState([]);
-  const [placeholder, setPlaceholder] = useState("Search...");
-  
+
   const user = useContext(UserContext);
-
+  
   useEffect(() => {
-    const userSelected = user.loadedUsers.filter(
-      userId => userId.id === props.id
-    );
-    const nameSelected = userSelected[0].name;
-    const avatar = userSelected[0].avatar;
-    setAvatarUser(avatar);
-    setNameUserSelected(nameSelected);
-    const userIdConnections = userSelected[0].connections;
-
-    const userConnections = [];
-    for (let i = 0; i < userIdConnections.length; i++) {
-      if (user.loadedUsers.find(x => x.id === userIdConnections[i])) {
-        userConnections.push(
-          user.loadedUsers.find(x => x.id === userIdConnections[i])
-        );
-      }
-    }
-    const sortedUserConnections = userConnections.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-    setSortedConnections(sortedUserConnections);
+    const usersLoaded = user.loadedUsers;
+    const userSelected = connectionsUserLogic(usersLoaded, props.id);
+    setAvatarUser(userSelected.avatar);
+    setNameUserSelected(userSelected.nameSelected);
+    setSortedConnections(userSelected.sortedUserConnections);
   }, [props.id, user.loadedUsers]);
 
   if (!user.loadedUsers) {
@@ -75,17 +58,10 @@ const ConnectionsUser = props => {
     setCurrentPage(1);
     setStartUsers(0);
     setEndUsers(20);
-
     if (userInput === "") {
       setSearchInput("");
-      setPlaceholder("Search...");
     }
   };
-
-  let totalPagesSearch = Math.ceil(sortedConnections.length / 20);
-  if (searchInput) {
-    totalPagesSearch = Math.ceil(usersSearchInput.length / 20);
-  }
 
   return (
     <div className="connections">
@@ -94,18 +70,14 @@ const ConnectionsUser = props => {
           <SearchBar
             onChangeHandler={searchUserHandler}
             className="searchbar-connections"
-            placeholder={placeholder}
           />
         </div>
         <span className="connections-header__title">{nameUserSelected}</span>
-
-        {
-          <img
-            src={avatarUser}
-            alt={nameUserSelected}
-            className="connections-header__image"
-          />
-        }
+        <img
+          src={avatarUser}
+          alt={nameUserSelected}
+          className="connections-header__image"
+        />
       </div>
       {!searchInput && (
         <AllConnectionsUser
@@ -121,25 +93,15 @@ const ConnectionsUser = props => {
           endUser={endUser}
         />
       )}
-      <div className="button-contacts">
-        <button
-          className="button"
-          disabled={currentPage === 1}
-          onClick={handleLoadLessUsers}
-        >
-          Less
-        </button>
-        <span className="pagination">
-          {currentPage} / {totalPagesSearch}
-        </span>
-        <button
-          className="button"
-          disabled={currentPage >= totalPagesSearch}
-          onClick={handleLoadMoreUsers}
-        >
-          More
-        </button>
-      </div>
+      <Pagination
+        searchInput={searchInput}
+        currentPage={currentPage}
+        usersSearchInput={usersSearchInput}
+        sortedConnections={sortedConnections}
+        onHandleLoadLessUsers={handleLoadLessUsers}
+        onHandleLoadMoreUsers={handleLoadMoreUsers}
+        connectionsPerPage={20}
+      />
     </div>
   );
 };

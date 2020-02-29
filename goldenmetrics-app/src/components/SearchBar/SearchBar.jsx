@@ -1,16 +1,16 @@
 import React from "react";
 
-import "./SearchBar.css"
+import "./SearchBar.css";
 
 const SearchBar = props => {
-
   return (
     <form>
       <i className="fas fa-search"></i>
       <input
         type="text"
-        placeholder={props.placeholder}
+        placeholder="Search..."
         onChange={props.onChangeHandler}
+        value={props.searchInput}
         className="searchbar"
       />
     </form>

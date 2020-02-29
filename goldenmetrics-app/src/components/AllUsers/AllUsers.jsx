@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import UserContext from "../../shared/Context/UserContext";
 
-import "./AllUsers.css";
+import './AllUsers.css';
 
 const AllUsers = props => {
   const user = useContext(UserContext);
 
   return (
-    <div className="container-allusers">
-      <ul>
+    <div>
+      <ul className="allUsers">
         {user.loadedUsers.slice(props.startUser, props.endUser).map(u => (
           <li key={u.id} value={u.id} onClick={props.onUserClickHandler}>
             {u.name}

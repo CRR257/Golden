@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./shared/Context/AuthContext";
 import Users from "./components/Users/Users";
 import Auth from "./components/Auth/Auth";
@@ -7,25 +7,6 @@ import { useAuth } from "./shared/Hooks/auth-hooks";
 
 const App = () => {
   const { token, login, logout } = useAuth();
-
-  let routes;
-
-  if (token) {
-    routes = (
-      <Switch>
-        <Route path="/contacts" exact />
-        <Users />
-      </Switch>
-    );
-  } else {
-    routes = (
-      <Switch>
-        <Route path="/">
-          <Auth />
-        </Route>
-      </Switch>
-    );
-  }
 
   return (
     <AuthContext.Provider
@@ -37,7 +18,7 @@ const App = () => {
       }}
     >
       <Router>
-        <main>{routes}</main>
+        {<Route exact path="/" render={() => token ? <Users/> : <Auth/> }/>}
       </Router>
     </AuthContext.Provider>
   );

@@ -30,7 +30,7 @@ npm run devbabel
 ```
 ### Start the client
 ```
-npm run serve
+npm run start
 ```
 ## Technologies
 

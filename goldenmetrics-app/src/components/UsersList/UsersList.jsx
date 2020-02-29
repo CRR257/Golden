@@ -7,6 +7,7 @@ import Logout from "../Logout/Logout";
 import ConnectionsUser from "../ConnectionsUser/ConnectionsUser";
 import UsersLetterSelected from "../UsersLetterSelected/UsersLetterSelected";
 import UsersSearchInput from "../UsersSearchInput/UsersSearchInput";
+import Pagination from "../Pagination/PaginationUsers";
 import "./UsersList.css";
 
 const UsersList = props => {
@@ -17,21 +18,26 @@ const UsersList = props => {
   const [searchInput, setSearchInput] = useState("");
   const [displayAllUsers, setDisplayAllUsers] = useState(true);
   const [userIdSelected, setUserIdSelected] = useState(false);
-  const [placeholder, setPlaceholder] = useState("Search...");
+  const [startUserConnection, setStartUserConnection] = useState(1);
 
+  const setStart =() => {
+    setCurrentPage(1);
+    setStartUsers(0);
+    setEndUsers(50);
+  }
+  
   const letterClickedHandler = event => {
     const letterSelected = event.target.value;
     setAlphabet(letterSelected);
     setSearchInput("");
     setDisplayAllUsers(false);
-    setCurrentPage(1);
-    setStartUsers(0);
-    setEndUsers(50);
+    setStart();
   };
 
   const userSelectedHandler = event => {
     const userId = event.target.value;
     setUserIdSelected(userId);
+    setStartUserConnection(1);
   };
 
   const searchUserHandler = event => {
@@ -39,28 +45,12 @@ const UsersList = props => {
     setSearchInput(userInput);
     setAlphabet("");
     setDisplayAllUsers(false);
-    setCurrentPage(1);
-    setStartUsers(0);
-    setEndUsers(50);
+    setStart();
     if (userInput === "") {
       setDisplayAllUsers(true);
       setUserIdSelected(false);
-      setPlaceholder("Search...");
     }
   };
-
-  let totalPages = Math.ceil(props.items.length / 50);
-  if (letterSelected) {
-    const usersLetterSelected = props.items.filter(user => {
-      return user.name.indexOf(letterSelected) === 0;
-    });
-    totalPages = Math.ceil(usersLetterSelected.length / 50);
-  } else if (searchInput) {
-    const usersSearchInput = props.items.filter(user => {
-      return user.name.toLowerCase().indexOf(searchInput.toLowerCase()) === 0;
-    });
-    totalPages = Math.ceil(usersSearchInput.length / 50);
-  }
 
   const handleLoadMoreUsers = () => {
     setCurrentPage(currentPage + 1);
@@ -79,7 +69,6 @@ const UsersList = props => {
       <Logout />
       <SearchBar
         onChangeHandler={searchUserHandler}
-        placeholder={placeholder}
       />
       <div className="users-content">
         <Alphabet onClickHandler={letterClickedHandler} className="alphabet" />
@@ -106,27 +95,27 @@ const UsersList = props => {
             endUser={endUser}
           />
         )}
+        {userIdSelected && (
+          <ConnectionsUser
+            id={userIdSelected}
+            startUserConnection={startUserConnection}
+          />
+        )}
+        {!userIdSelected && (
+          <div className="warning">
+            Select a user from the list to see their connections
+          </div>
+        )}
       </div>
-      <div className="button-users">
-        <button
-          className="button"
-          disabled={currentPage === 1}
-          onClick={handleLoadLessUsers}
-        >
-          Less
-        </button>
-        <span className="pagination">
-          {currentPage} / {totalPages}
-        </span>
-        <button
-          className="button"
-          disabled={currentPage >= totalPages}
-          onClick={handleLoadMoreUsers}
-        >
-          More
-        </button>
-        {userIdSelected && <ConnectionsUser id={userIdSelected} />}
-      </div>
+      <Pagination
+        searchInput={searchInput}
+        letterSelected={letterSelected}
+        items={props.items}
+        currentPage={currentPage}
+        onHandleLoadLessUsers = {handleLoadLessUsers}
+        onHandleLoadMoreUsers = {handleLoadMoreUsers}
+        connectionsPerPage = {50}
+      />
     </div>
   );
 };

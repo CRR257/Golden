@@ -9,7 +9,7 @@ const UsersLetterSelected = props => {
   });
 
   return (
-    <ul>
+    <ul className="allUsers">
       {usersLetterSelected
         .slice(props.startUser, props.endUser)
         .map(userSelected => (
